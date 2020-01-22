@@ -1,8 +1,7 @@
 window.singleProduct = {
     API_BASE_URL: "http://localhost:8085",
 
-    getProduct: function () {
-        let productId = 4;
+    getProduct: function (productId) {
             $.ajax({
             url: singleProduct.API_BASE_URL + "/products/" + productId,
             method: "GET",
@@ -21,15 +20,10 @@ window.singleProduct = {
         return `<div class="col-sm-6">
                                 <div class="product-images">
                                     <div class="product-main-img">
-                                        <img src="img/product-3.jpg" alt="">
+                                        <img src="https://s12emagst.akamaized.net/products/14774/14773744/images/res_05ac3cea683ca713ffa5325dba44d86b_full.jpg" alt="">
                                     </div>
                                     
-                                    <div class="product-gallery">
-                                        <img src="img/product-thumb-4.jpg" alt="">
-                                        <img src="img/product-thumb-4.jpg" alt="">
-                                        <img src="img/product-thumb-4.jpg" alt="">
-                                        <img src="img/product-thumb-4.jpg" alt="">
-                                    </div>
+                                   
                                 </div>
                             </div>
                             
@@ -44,7 +38,7 @@ window.singleProduct = {
                                     </form>   
                                     
                                     <div class="product-inner-category">
-                                        <p>Category: <a href="">Electronice</p>
+                                        <p>Category: <a href="">Electronics</p>
                                     </div> 
                                     
                                     <div role="tabpanel">

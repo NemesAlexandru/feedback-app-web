@@ -17,7 +17,9 @@ window.Shop = {
         $(".single-product-area").delegate(".add_to_cart_button", "click", function (event) {
             event.preventDefault();
             let productId = $(this).data("product_id");
+            let productIdLong = parseFloat(productId);
             window.location.replace("single-product.html");
+            singleProduct.getProduct(productIdLong);
         })
     },
 
@@ -29,7 +31,6 @@ window.Shop = {
                         </div>
                         <h2><a href="">${product.name}</a></h2>
                         <div class="product-carousel-price">
-                            <ins>$899.00</ins> <del>$999.00</del>
                         </div>  
                         
                         <div class="product-option-shop">
