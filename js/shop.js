@@ -12,6 +12,15 @@ window.Shop = {
         });
     },
 
+
+    bindEvents: function () {
+        $(".single-product-area").delegate(".add_to_cart_button", "click", function (event) {
+            event.preventDefault();
+            let productId = $(this).data("product_id");
+            window.location.replace("single-product.html");
+        })
+    },
+
     getProductsHtml: function (product) {
         return `<div class="col-md-3 col-sm-6">
                     <div class="single-shop-product">
@@ -24,7 +33,7 @@ window.Shop = {
                         </div>  
                         
                         <div class="product-option-shop">
-                            <a class="add_to_cart_button" data-quantity="1" data-product_sku="" data-product_id=${product.id} rel="nofollow" href="/canvas/shop/?add-to-cart=${product.id}">Add to cart</a>
+                            <a class="add_to_cart_button" data-quantity="1" data-product_sku="" data-product_id=${product.id} rel="nofollow" href="/canvas/shop/?add-to-cart=${product.id}">Add review</a>
                         </div>                       
                     </div>
                 </div>`
@@ -39,3 +48,4 @@ window.Shop = {
 };
 
 Shop.getProducts();
+Shop.bindEvents();
