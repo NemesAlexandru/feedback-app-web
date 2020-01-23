@@ -17,9 +17,8 @@ window.Shop = {
         $(".single-product-area").delegate(".add_to_cart_button", "click", function (event) {
             event.preventDefault();
             let productId = $(this).data("product_id");
-            let productIdLong = parseFloat(productId);
-            window.location.replace("single-product.html");
-            singleProduct.getProduct(productIdLong);
+
+            window.location.replace("single-product.html?product-id=" + productId);
         })
     },
 
@@ -27,7 +26,7 @@ window.Shop = {
         return `<div class="col-md-3 col-sm-6">
                     <div class="single-shop-product">
                         <div class="product-upper">
-                            <img src="img/product-2.jpg" alt="">
+                            <img src="${product.imageUrl}" alt="">
                         </div>
                         <h2><a href="">${product.name}</a></h2>
                         <div class="product-carousel-price">
@@ -45,7 +44,8 @@ window.Shop = {
 
         products.forEach(oneProduct => productsHtml += Shop.getProductsHtml(oneProduct));
         $(".single-product-area .row:first-child").html(productsHtml);
-    }
+    },
+
 };
 
 Shop.getProducts();

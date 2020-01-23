@@ -1,9 +1,11 @@
 window.singleProduct = {
     API_BASE_URL: "http://localhost:8085",
 
-    getProduct: function (productId) {
-            $.ajax({
-            url: singleProduct.API_BASE_URL + "/products/" + productId,
+    getProduct: function () {
+        const urlParams = new URLSearchParams(window.location.search);
+        const myParam = parseInt(urlParams.get(`product-id`));
+        $.ajax({
+            url: singleProduct.API_BASE_URL + "/products/" + myParam,
             method: "GET",
             //default ajax method: "GET"
         }).done(function (response) {
@@ -12,7 +14,7 @@ window.singleProduct = {
         });
 
 
-},
+    },
 
 
     getSingleProductHtml: function (product) {
@@ -20,7 +22,7 @@ window.singleProduct = {
         return `<div class="col-sm-6">
                                 <div class="product-images">
                                     <div class="product-main-img">
-                                        <img src="https://s12emagst.akamaized.net/products/14774/14773744/images/res_05ac3cea683ca713ffa5325dba44d86b_full.jpg" alt="">
+                                        <img src="${product.imageUrl}" alt="">
                                     </div>
                                     
                                    
