@@ -16,7 +16,6 @@ window.Checkout = {
             contentType: "application/json",
             data: JSON.stringify(requestBody)
         }).done(function () {
-            // ToDoList.getItems();
             window.location.replace("shop.html");
         })
 
