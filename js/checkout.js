@@ -12,7 +12,6 @@ window.Checkout = {
         $.ajax({
             url: Checkout.API_BASE_URL + "/products",
             method: "POST",
-            //MIME type
             contentType: "application/json",
             data: JSON.stringify(requestBody)
         }).done(function () {

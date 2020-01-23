@@ -50,9 +50,9 @@ window.singleProduct = {
                                         <div class="tab-content">
                                             <div role="tabpanel" class="tab-pane fade in active" id="home">
                                                 <div class="submit-review">
-                                                    <p><label for="name">Review Title</label> <input name="name" type="text"></p>
-                                                    <p><label for="review">Your review</label> <textarea name="review" id="" cols="30" rows="10"></textarea></p>
-                                                    <p><input type="submit" value="Submit"></p>
+                                                    <p><label for="name">Review Title</label> <input name="name" id="review_title" type="text"></p>
+                                                    <p><label for="review">Your review</label> <textarea name="review" id="review_body" cols="30" rows="10"></textarea></p>
+                                                    <p><input type="submit" value="Submit" id="submit"></p>
                                                 </div>
                                                </div>
                                             
@@ -70,9 +70,49 @@ window.singleProduct = {
         productHtml = singleProduct.getSingleProductHtml(product);
         $(".col-md-8 .row ").html(productHtml);
 
+    },
+
+    createReview: function () {
+        let reviewNameValue = $("#review_title").val();
+        let descriptionValue = $("#review_body").val();
+
+        let requestBody = {
+            reviewName: reviewNameValue,
+            description: descriptionValue
+        };
+        $.ajax({
+            url: singleProduct.API_BASE_URL + "/reviews",
+            method: "POST",
+            contentType: "application/json",
+            data: JSON.stringify(requestBody)
+        }).done(function () {
+            console.log("Done");
+
+            window.location.reload();
+        })
+    },
+
+    addReviewToProduct: function(){
+
+        let productIdValue;
+        let reviewIdValue;
+    },
+
+    bindEvents: function () {
+        $(".col-md-8").delegate("#submit", "click", function (event) {
+
+
+            event.preventDefault();
+            singleProduct.createReview()
+
+        })
+
     }
+
+
 
 };
 
 singleProduct.getProduct();
+singleProduct.bindEvents();
 
