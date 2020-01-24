@@ -16,6 +16,36 @@ window.singleProduct = {
 
     },
 
+    getReviews: function (){
+        const urlParams = new URLSearchParams(window.location.search);
+        const productIdValue = parseInt(urlParams.get(`product-id`));
+
+
+        $.ajax({
+            url: singleProduct.API_BASE_URL + "/reviews/" + productIdValue,
+
+        }).done(function (response) {
+            console.log(response);
+            console.log("A MERS")
+            singleProduct.displayReviews(response.content);
+        })
+    },
+
+    getReviewsHtml: function(review){
+        return `<table class="shop_table">
+                                                   <thead>
+                                                      <tr>
+                                                           <th class="product-name">${review.reviewName}</th>
+                                                      </tr>
+                                                   </thead>
+                                                   <tbody>
+                                                        <tr class="cart_item">
+                                                            <td class="product-name">
+                                                                ${review.description} </td>
+                                                        </tr>
+                                                   </tbody>`
+    },
+
 
     getSingleProductHtml: function (product) {
 
@@ -65,6 +95,16 @@ window.singleProduct = {
                                     
     },
 
+    displayReviews: function(reviews){
+        let reviewsHtml = "";
+
+        reviews.forEach(oneReview => reviewsHtml += singleProduct.getReviewsHtml(oneReview));
+
+        $(".single-sidebar .sidebar-title").html(reviewsHtml);
+
+
+    },
+
     displayProduct: function(product) {
         let productHtml;
         productHtml = singleProduct.getSingleProductHtml(product);
@@ -85,17 +125,34 @@ window.singleProduct = {
             method: "POST",
             contentType: "application/json",
             data: JSON.stringify(requestBody)
-        }).done(function () {
+        }).done(function (response) {
             console.log("Done");
+            singleProduct.addReviewToProduct(response);
 
             window.location.reload();
         })
     },
 
-    addReviewToProduct: function(){
+    addReviewToProduct: function(review){
 
-        let productIdValue;
-        let reviewIdValue;
+        let urlParams = new URLSearchParams(window.location.search);
+        let productIdValue = parseInt(urlParams.get(`product-id`));
+        let reviewIdValue = review.id;
+
+        let requestBody = {
+            productId: productIdValue,
+            reviewId: reviewIdValue
+        };
+
+        $.ajax({
+            url: singleProduct.API_BASE_URL + "/products",
+            method: "PUT",
+            contentType: "application/json",
+            data: JSON.stringify(requestBody)
+        }).done(function () {
+            console.log("Added review to product")
+        })
+
     },
 
     bindEvents: function () {
@@ -115,4 +172,4 @@ window.singleProduct = {
 
 singleProduct.getProduct();
 singleProduct.bindEvents();
-
+singleProduct.getReviews();

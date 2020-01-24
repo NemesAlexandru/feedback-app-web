@@ -28,7 +28,7 @@ window.Shop = {
                         <div class="product-upper">
                             <img src="${product.imageUrl}" alt="">
                         </div>
-                        <h2><a href="">${product.name}</a></h2>
+                        <h2>${product.name}</h2>
                         <div class="product-carousel-price">
                         </div>  
                         

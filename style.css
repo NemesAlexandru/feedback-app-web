@@ -779,26 +779,31 @@ table.shop_table {
     border-bottom: 1px solid #ddd;
     border-right: 1px solid #ddd;
     margin-bottom: 50px;
-    width: 100%;
+    width: 50%;
+
 }
 table.shop_table th, table.shop_table td {
     border-left: 1px solid #ddd;
     border-top: 1px solid #ddd;
-    padding: 15px;
-    text-align: center;
+    padding: 10px;
+    text-align: left;
 }
 table.shop_table th {
     background: none repeat scroll 0 0 #f4f4f4;
-    font-size: 15px;
+    font-size: 20px;
     text-transform: uppercase;
+    color: #222222;
 }
 td.product-thumbnail img {
     height: auto;
     width: 70px;
 }
 td.product-name {
-    font-size: 18px;
+    font-size: 12px;
+    text-transform: lowercase;
 }
+
+
 div.quantity input.plus, div.quantity input.minus {
     background: none repeat scroll 0 0 #1abc9c;
     border: medium none;
@@ -831,7 +836,7 @@ td.actions div.coupon {
     color: #1abc9c;
     font-size: 25px;
     margin-bottom: 25px;
-    text-transform: uppercase;
+    text-transform: lowercase;
 }
 div.cart-collaterals ul.products {
     list-style: outside none none;
